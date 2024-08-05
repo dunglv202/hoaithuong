@@ -41,5 +41,4 @@ services:
     restart: always
 
 volumes:
-  sqa_db_data:
-    name: db_data
+  db_data:
