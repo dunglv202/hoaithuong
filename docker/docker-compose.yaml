@@ -1,0 +1,45 @@
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/templates/default.conf.template
+    ports:
+      - "80:80"
+    restart: always
+  db:
+    image: mysql:8.4.0
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    restart: always
+
+  adminer:
+    image: adminer
+    environment:
+      - ADMINER_DEFAULT_SERVER=db
+    restart: always
+
+  backend:
+    image: hoaithuong/backend
+    build:
+      context: ../backend
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=${MYSQL_ROOT_PASSWORD}
+      - DB_NAME=hoaithuong
+      - JWT_SECRET=${JWT_SECRET}
+    restart: always
+    depends_on:
+      - db
+
+  frontend:
+    image: hoaithuong/frontend
+    build:
+      context: ../frontend
+    restart: always
+
+volumes:
+  sqa_db_data:
+    name: db_data
