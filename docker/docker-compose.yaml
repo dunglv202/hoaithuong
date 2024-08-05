@@ -21,7 +21,7 @@ services:
     restart: always
 
   backend:
-    image: hoaithuong/backend
+    image: dunglvrabiloo/hoaithuong-backend
     build:
       context: ../backend
     environment:
@@ -35,7 +35,7 @@ services:
       - db
 
   frontend:
-    image: hoaithuong/frontend
+    image: dunglvrabiloo/hoaithuong-frontend
     build:
       context: ../frontend
     restart: always
