@@ -1,0 +1,31 @@
+application:
+  base-url: <base_url_here>
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: <client_id_here>
+            client-secret: <client_secret_here>
+            redirect-uri: <redirect_url_here>
+  servlet:
+    multipart:
+      max-file-size: 5MB
+auth:
+  jwt:
+    secret: <jwt_secret_here>
+security:
+  id-encryptor:
+    secret: <id_encryptor_here>
+aws:
+  access-key: <aws_access_key_here>
+  secret-key: <aws_secret_key_here>
+  bucket: <aws_bucket_here>
+microsoft:
+  tenant-id: <ms_tenant_id_here>
+  client-id: <ms_client_id_here>
+  client-secret: <ms_secret_here>
+  drive-id: <ms_drive_id_here>
+drive:
+  shared-folder: <google_drive_shared_here>

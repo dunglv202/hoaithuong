@@ -6,6 +6,7 @@ services:
     ports:
       - "80:80"
     restart: always
+
   db:
     image: mysql:8.4.0
     volumes:
@@ -21,21 +22,22 @@ services:
     restart: always
 
   backend:
-    image: dunglvrabiloo/hoaithuong-backend
+    image: dunglv202/hoaithuong-be
     build:
       context: ../backend
     environment:
       - DB_HOST=db
       - DB_USER=root
       - DB_PASS=${MYSQL_ROOT_PASSWORD}
-      - DB_NAME=hoaithuong
-      - JWT_SECRET=${JWT_SECRET}
+      - DB_NAME=hoai_thuong
+    volumes:
+      - ./application.yaml:/usr/sqa/backend/application.yaml:ro
     restart: always
     depends_on:
       - db
 
   frontend:
-    image: dunglvrabiloo/hoaithuong-frontend
+    image: dunglv202/hoaithuong-fe
     build:
       context: ../frontend
     restart: always
