@@ -13,12 +13,15 @@ services:
       - db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: hoai_thuong
     restart: always
 
   adminer:
     image: adminer
     environment:
       - ADMINER_DEFAULT_SERVER=db
+    ports:
+      - "81:8080"
     restart: always
 
   backend:
@@ -31,7 +34,7 @@ services:
       - DB_PASS=${MYSQL_ROOT_PASSWORD}
       - DB_NAME=hoai_thuong
     volumes:
-      - ./application.yaml:/usr/sqa/backend/application.yaml:ro
+      - ./application.yaml:/usr/sqa/backend/config/application.yaml:ro
     restart: always
     depends_on:
       - db
