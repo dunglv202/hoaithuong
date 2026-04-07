@@ -9,12 +9,18 @@ spring:
             client-id: <client_id_here>
             client-secret: <client_secret_here>
             redirect-uri: <redirect_url_here>
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
   servlet:
     multipart:
       max-file-size: 5MB
+  flyway:
+    enabled: false
 auth:
   jwt:
-    secret: <jwt_secret_here>
+    secret: <jwt_secret_here_and_should_have_at_least_32_bytes_in_length>
 security:
   id-encryptor:
     secret: <id_encryptor_here>
@@ -22,6 +28,12 @@ aws:
   access-key: <aws_access_key_here>
   secret-key: <aws_secret_key_here>
   bucket: <aws_bucket_here>
+minio:
+  url: http://localhost/s3
+  access-key: jPs2to9AwsOS8V4BUEJS
+  access-secret: F5alYFTSjWEVZiRuRZ9ZYUrZMdMHeqfX3oWUZkyZ
+  bucket: hoai-thuong
+  enabled: true
 microsoft:
   tenant-id: <ms_tenant_id_here>
   client-id: <ms_client_id_here>

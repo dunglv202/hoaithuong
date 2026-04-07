@@ -2,10 +2,13 @@ services:
   nginx:
     image: nginx
     volumes:
-      - ./nginx.conf:/etc/nginx/templates/default.conf.template
+      - ./nginx.conf:/etc/nginx/templates/default.conf.template:ro
     ports:
       - "80:80"
     restart: always
+    depends_on:
+      - frontend
+      - backend
 
   db:
     image: mysql:8.4.0
