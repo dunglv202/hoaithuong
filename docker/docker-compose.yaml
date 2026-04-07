@@ -33,6 +33,9 @@ services:
       - DB_USER=root
       - DB_PASS=${MYSQL_ROOT_PASSWORD}
       - DB_NAME=hoai_thuong
+      - JAVA_OPTS=${JAVA_OPTS}
+    ports:
+      - "5005:5005"
     volumes:
       - ./application.yaml:/usr/sqa/backend/config/application.yaml:ro
     restart: always
